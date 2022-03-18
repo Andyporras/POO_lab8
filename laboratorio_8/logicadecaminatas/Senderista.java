@@ -1,10 +1,11 @@
 package logicadecaminatas;
-import java.util.Calendar;
+
+//import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class Senderista{
+public class Senderista {
   private String nombre;
   private String apellido;
   private Date fechaNacimiento;
@@ -12,9 +13,9 @@ public class Senderista{
   private double altura;
   private String numeroTelefono;
   private String correoElectronico;
-  
-  public Senderista(String pNombre,String pApellido,String pFechaNacimiento,
-  double pPeso,double pAltura,String pNumeroTelefono,String pCorreoElectronico){
+
+  public Senderista(String pNombre, String pApellido, String pFechaNacimiento,
+      double pPeso, double pAltura, String pNumeroTelefono, String pCorreoElectronico) {
     nombre = pNombre;
     apellido = pApellido;
     fechaNacimiento = StringToDate(pFechaNacimiento);
@@ -23,57 +24,67 @@ public class Senderista{
     numeroTelefono = pNumeroTelefono;
     correoElectronico = pCorreoElectronico;
   }
-  public Date StringToDate(String pFecha){
+
+  public Date StringToDate(String pFecha) {
     Date result = null;
-    try{
+    try {
       SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy");
-      result  = dateFormat.parse(pFecha);                 
-    }
-    catch(ParseException e){
+      result = dateFormat.parse(pFecha);
+    } catch (ParseException e) {
       e.printStackTrace();
     }
-    return result ;
-  }
-  public int calcularEdad(){
-    int result = 0;
-    int fecha = getFechaNacimiento().getYear();
-    result = 2021-fecha;
     return result;
   }
-  public void asignarCaminata(Caminata pCaminata){
-    
+
+  public int calcularEdad() {
+    int result = 0;
+    int fecha = getFechaNacimiento().getYear();
+    result = 2021 - fecha;
+    return result;
   }
-  public String getNombre(){
+
+  public void asignarCaminata(Caminata pCaminata) {
+
+  }
+
+  public String getNombre() {
     return nombre;
   }
-  public String getApellido(){
+
+  public String getApellido() {
     return apellido;
   }
-  public Date getFechaNacimiento(){
+
+  public Date getFechaNacimiento() {
     return fechaNacimiento;
   }
-  public double getPeso(){
+
+  public double getPeso() {
     return peso;
   }
-  public double getAltura(){
+
+  public double getAltura() {
     return altura;
   }
-  public String getNumeroTelefono(){
+
+  public String getNumeroTelefono() {
     return numeroTelefono;
   }
-  public String getCorreoElectronico(){
+
+  public String getCorreoElectronico() {
     return correoElectronico;
   }
-  public String toString(){
-    String msg= "";
-    msg +=( "Nombre: "+getNombre()+"\n");
-    msg += ("Apellido: "+getApellido()+"\n");
-    msg += ("Fecha de nacimiento: "+getFechaNacimiento()+"\n");
-    msg += ("Peso: "+getPeso()+"\n");
-    msg += ("Altura: "+getAltura()+"\n");
-    msg += ("Numero de telefono: "+getNumeroTelefono()+"\n");
-    msg += ("Correo Eletronico: "+getCorreoElectronico()+"\n");
+
+  public String toString() {
+    String msg = "";
+    msg += ("Nombre: " + getNombre() + "\n");
+    msg += ("Apellido: " + getApellido() + "\n");
+    msg += ("Fecha de nacimiento: " + getFechaNacimiento() + "\n");
+    msg += ("Peso: " + getPeso() + "\n");
+    msg += ("Altura: " + getAltura() + "\n");
+    msg += ("Numero de telefono: " + getNumeroTelefono() + "\n");
+    msg += ("Correo Eletronico: " + getCorreoElectronico() + "\n");
     return msg;
   }
-  
+
 }
