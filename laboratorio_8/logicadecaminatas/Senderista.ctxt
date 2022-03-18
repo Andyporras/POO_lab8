@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Senderista
+comment1.params=pNombre\ pApellido\ pFechaNacimiento\ pPeso\ pAltura\ pNumeroTelefono\ pCorreoElectronico
+comment1.target=Senderista(java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double,\ java.lang.String,\ java.lang.String)
+comment10.params=
+comment10.target=java.lang.String\ getNumeroTelefono()
+comment11.params=
+comment11.target=java.lang.String\ getCorreoElectronico()
+comment12.params=
+comment12.target=java.lang.String\ toString()
+comment2.params=pFecha
+comment2.target=java.util.Date\ StringToDate(java.lang.String)
+comment3.params=
+comment3.target=int\ calcularEdad()
+comment4.params=pCaminata
+comment4.target=void\ asignarCaminata(Caminata)
+comment5.params=
+comment5.target=java.lang.String\ getNombre()
+comment6.params=
+comment6.target=java.lang.String\ getApellido()
+comment7.params=
+comment7.target=java.util.Date\ getFechaNacimiento()
+comment8.params=
+comment8.target=double\ getPeso()
+comment9.params=
+comment9.target=double\ getAltura()
+numComments=13
