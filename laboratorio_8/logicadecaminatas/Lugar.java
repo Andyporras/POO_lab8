@@ -43,6 +43,13 @@ public class Lugar {
     return total;
   }
 
+  /**
+   * funcion que registra la ruta.
+   * 
+   * @param pNombre
+   * @param pDistancia
+   * @param pDificultad
+   */
   public void registrarRuta(String pNombre, double pDistancia, String pDificultad) {
     Ruta nuevo = new Ruta(pNombre, pDistancia, pDificultad);
     agregarRuta(nuevo);
@@ -62,10 +69,20 @@ public class Lugar {
     direcciones.add(pDireccion);
   }
 
+  /**
+   * retorna el nombre
+   * 
+   * @return un String con el nombre
+   */
   public String getNombre() {
     return nombre;
   }
 
+  /**
+   * modifica el nombre de la ruta.
+   * 
+   * @param pNombre
+   */
   public void setNombre(String pNombre) {
     nombre = pNombre;
   }

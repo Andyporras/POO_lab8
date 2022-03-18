@@ -1,5 +1,11 @@
 package logicadecaminatas;
 
+/**
+ * Clase Ruta que representa una ruta de un lugar a otro.
+ * con sus atributos nombre, distancia, dificultad y una lista de lugares.
+ * 
+ * @author Andy Porras
+ */
 public class Ruta {
   private static int contadorRutas;
   private int idRuta;
@@ -7,6 +13,13 @@ public class Ruta {
   private double distanciaEnKm;
   private String dificultad;
 
+  /**
+   * Contrustor de la clase Ruta.
+   * 
+   * @param pNombre
+   * @param pDistanciaEnKm
+   * @param pDificultad
+   */
   public Ruta(String pNombre, double pDistanciaEnKm, String pDificultad) {
     contadorRutas++;
     idRuta = contadorRutas;
@@ -15,6 +28,12 @@ public class Ruta {
     dificultad = pDificultad;
   }
 
+  /**
+   * Metodo que retorna el los datos de la class Ruta.
+   * 
+   * @return un String de los atributos de la clase Ruta.
+   * @param parametro
+   */
   public String toString() {
     String msg;
     msg = ("IdRuta: " + getIdRuta() + "\n");
