@@ -1,8 +1,12 @@
 package aplicacion;
 
-//import aplicacion.AppCaminatas;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.io.InputStreamReader;
 
 /**
@@ -26,7 +30,7 @@ public class AplCaminata {
   static BufferedReader in;
   static PrintStream out;
 
-  public static void main(String[] args) throws java.io.IOException {
+  public static void main(String[] args) throws ParseException, java.io.IOException {
     nombres = new String[10];
     apellido = new String[10];
     peso = new double[10];
@@ -42,6 +46,7 @@ public class AplCaminata {
       pOpcion = leerpOpcion();
       noSalir = ejecutarAccion(pOpcion);
     } while (noSalir);
+    out.println("Hasta luego, vuelva pronto.");
   }
 
   public static void mostrarMenu() {
@@ -59,9 +64,8 @@ public class AplCaminata {
     return pOpcion;
   }
 
-  static boolean ejecutarAccion(int pOpcion) throws java.io.IOException {
+  static boolean ejecutarAccion(int pOpcion) throws ParseException, java.io.IOException {
     boolean noSalir = true;
-    int opc = 0;
     switch (pOpcion) {
       case 1:
         menuSenderista();
@@ -74,6 +78,9 @@ public class AplCaminata {
         ejecutarMenuLugares(opcion);
         break;
       case 3:
+        menuCaminatas();
+        int opcion2 = leerpOpcion();
+        ejecutarMenuCaminatas(opcion2);
         break;
       case 4:
         noSalir = false;
@@ -99,7 +106,6 @@ public class AplCaminata {
 
   static void ejecutarMenuLugares(int pOpcion) throws java.io.IOException {
     boolean noSalir = true;
-    int opc = 0;
     switch (pOpcion) {
       case 1:
         String nombre;
@@ -191,12 +197,13 @@ public class AplCaminata {
     out.println("1. registrar Senderista");
     out.println("2. consultar Senderista por nombre");
     out.println("3. consultar senderistas Mayores de edad");
-    out.println("4. salir");
+    out.println("4. consultar todas las rutas realizadas por un senderista");
+    out.println("5. registrar una ruta a un senderista");
+    out.println("6. salir");
   }
 
   static void ejecutarMenuSenderista(int pOpcion) throws java.io.IOException {
     boolean noSalir = true;
-    int opc = 0;
     switch (pOpcion) {
       case 1:
         String nombre;
@@ -228,12 +235,92 @@ public class AplCaminata {
         C1.consultarSenderistasMayoresDeNEdad();
         break;
       case 4:
+        out.println("Ingrese el id del senderista a consultar");
+        int idSenderista = Integer.parseInt(in.readLine());
+        C1.consultarRutasRealizadas(idSenderista);
+        break;
+      case 5:
+        out.println("Ingrese el id del senderista a registrar una ruta");
+        int idSenderista2 = Integer.parseInt(in.readLine());
+        out.println("Ingrese el id de la ruta. ");
+        int idRuta = Integer.parseInt(in.readLine());
+        C1.registrarRuta(idSenderista2, idRuta);
+        break;
+      case 6:
         noSalir = false;
         break;
       default:
         out.println("Opción no válida");
         break;
     } // fin del switch
+    out.println();
+  }
+
+  static void menuCaminatas() {
+    out.println("1. registrar Caminata");
+    out.println("2. asignar un senderista a una caminata. ");
+    out.println("3. consultar participantes de una caminata en una fecha especifica. ");
+    out.println("4. consultar caminatas en un rango de fechas. ");
+    out.println("5. consultar caminatas que tuvieron una duracion mayor a. ");
+    out.println("6. salir. ");
+
+  }
+
+  static void ejecutarMenuCaminatas(int pOpcion) throws IOException, ParseException {
+    boolean noSalir = true;
+    switch (pOpcion) {
+      case 1:
+        out.println("Ingrese el id del lugar de la caminata. ");
+        int idLugar = Integer.parseInt(in.readLine());
+        out.println("Ingrese la fecha de la caminata.\n con el formato dd-MM-yyyy.");
+        String fecha = in.readLine();
+        out.println("Ingrese la hora de inicio de la caminata. ");
+        Double horaInicio = Double.parseDouble(in.readLine());
+        out.println("Ingrese la hora de finalizacion de la caminata. ");
+        Double horaFin = Double.parseDouble(in.readLine());
+        out.println("Ingrese un comentario sobre la caminata. ");
+        String comentario = in.readLine();
+        SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
+        Date fechaC = (Date) mascara.parse(fecha);
+        C1.registrarCaminata(idLugar, fechaC, horaInicio, horaFin, comentario);
+        break;
+      case 2:
+        out.println("Ingrese el id de la caminata. ");
+        int idCaminata = Integer.parseInt(in.readLine());
+        out.println("Ingrese el apellido del senderista. ");
+        String apellidoSenderista = in.readLine();
+        C1.asignarSenderistaACaminata(apellidoSenderista, idCaminata);
+        break;
+      case 3:
+        out.println("Ingrese la fecha a consultar de las caminatas. ");
+        String fechaConsulta = in.readLine();
+        SimpleDateFormat mascara2 = new SimpleDateFormat("dd/MM/yy");
+        Date fechaC2 = (Date) mascara2.parse(fechaConsulta);
+        C1.consultarParticipantesEnCaminataConFecha(fechaC2);
+        break;
+      case 4:
+        out.println("Ingrese una fecha del rango a consultar. ");
+        String fechaInicio = in.readLine();
+        SimpleDateFormat mascara3 = new SimpleDateFormat("dd/MM/yy");
+        Date fechaC3 = (Date) mascara3.parse(fechaInicio);
+        out.println("Ingrese la otra fecha del rango a consultar. ");
+        String fechaFin = in.readLine();
+        SimpleDateFormat mascara4 = new SimpleDateFormat("dd/MM/yy");
+        Date fechaC4 = (Date) mascara4.parse(fechaFin);
+        C1.consultarCaminatasEnRangoFechas(fechaC3, fechaC4);
+        break;
+      case 5:
+        out.println("Ingrese la duracion minima que debe tener la caminata a consultar. ");
+        int duracion = Integer.parseInt(in.readLine());
+        C1.consultarCaminatasConDuracionMayorAXMinutos(duracion);
+        break;
+      case 6:
+        noSalir = false;
+        break;
+      default:
+        out.println("Opción no válida");
+        break;
+    }
     out.println();
   }
 }

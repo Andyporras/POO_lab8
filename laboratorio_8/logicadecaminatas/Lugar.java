@@ -1,15 +1,17 @@
 package logicadecaminatas;
 
-//import logicadecaminatas.Direccion;
-//import logicadecaminatas.Ruta;
 import java.util.ArrayList;
 
 /**
- * Clase Lugar, la cual permite ingresar las características de un lugar a visitar por
- * los senderistas, esta clase está relacionada estructuralmente con las clases: Ruta y
+ * Clase Lugar, la cual permite ingresar las características de un lugar a
+ * visitar por
+ * los senderistas, esta clase está relacionada estructuralmente con las clases:
+ * Ruta y
  * Dirreción.
- * Posee los atributos: contadorLugares, idLugar, nombre, costoDeIngreso, tipoLugar,
- * accesibilidad, parqueo, camping, contacto, telefono, indicaciones, ArrayList<Direccion> 
+ * Posee los atributos: contadorLugares, idLugar, nombre, costoDeIngreso,
+ * tipoLugar,
+ * accesibilidad, parqueo, camping, contacto, telefono, indicaciones,
+ * ArrayList<Direccion>
  * y ArrayList<Ruta>.
  * 
  * @author
@@ -26,9 +28,9 @@ public class Lugar {
   private String contacto;
   private String telefono;
   private String indicaciones;
-  private ArrayList<Direccion> direcciones;
+  private Direccion direccion;
   private ArrayList<Ruta> rutas;
-  
+
   /**
    * Constructor de la clase Lugar
    * 
@@ -56,11 +58,12 @@ public class Lugar {
     telefono = pTelefono;
     indicaciones = pIndicaciones;
   }
-  //método agregado.
-  public ArrayList getRutas(){
+
+  // método agregado.
+  public ArrayList<Ruta> getRutas() {
     return rutas;
   }
-  
+
   public double calcularDistaciaTotalEnRutas() {
     // ArrayList<Ruta> lista = new ArrayList<Ruta>();
     double total = 0;
@@ -93,7 +96,7 @@ public class Lugar {
   }
 
   private void agregarDireccion(Direccion pDireccion) {
-    direcciones.add(pDireccion);
+    direccion = pDireccion;
   }
 
   /**
@@ -105,15 +108,19 @@ public class Lugar {
     return nombre;
   }
 
+  public int getIdLugar() {
+    return idLugar;
+  }
+
   /**
-   *Modifica el nombre de la ruta.
+   * Modifica el nombre de la ruta.
    * 
    * @param pNombre.
    */
   public void setNombre(String pNombre) {
     nombre = pNombre;
   }
-  
+
   /**
    * Retorna el costo del ingreso al lugar.
    * 
@@ -122,7 +129,8 @@ public class Lugar {
   public double getCostoDeIngreso() {
     return costoDeIngreso;
   }
-  /** 
+
+  /**
    * Retorna el tipo de lugar.
    * 
    * @return un String con el tipo de lugar.
@@ -139,8 +147,8 @@ public class Lugar {
     tipoLugar = pTipoLugar;
   }
 
-  public ArrayList<Direccion> getDireccion() {
-    return direcciones;
+  public Direccion getDireccion() {
+    return direccion;
   }
 
   public boolean getAcesibilidad() {
