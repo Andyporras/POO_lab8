@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=Senderista
+comment0.text=\r\n\ Clase\ Senderista,\ la\ cual\ permite\ asignar\ a\ los\ participantes\ de\ las\ caminatas.\r\n\ Est\u00E1\ relacinada\ de\ manera\ estructural\ con\ la\ clase\ Caminata.\r\n\ Posee\ los\ atributos\:\ nombre,\ apellido,\ fechaNacimiento,\ peso,\ altura,\ numeroTelefono\ y\r\n\ correoElectronico.\r\n\ \r\n\ @author\r\n
 comment1.params=pNombre\ pApellido\ pFechaNacimiento\ pPeso\ pAltura\ pNumeroTelefono\ pCorreoElectronico
 comment1.target=Senderista(java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double,\ java.lang.String,\ java.lang.String)
 comment10.params=
@@ -8,6 +9,8 @@ comment11.params=
 comment11.target=java.lang.String\ getCorreoElectronico()
 comment12.params=
 comment12.target=java.lang.String\ toString()
+comment13.params=pO
+comment13.target=boolean\ equals(java.lang.Object)
 comment2.params=pFecha
 comment2.target=java.util.Date\ StringToDate(java.lang.String)
 comment3.params=
@@ -24,4 +27,4 @@ comment8.params=
 comment8.target=double\ getPeso()
 comment9.params=
 comment9.target=double\ getAltura()
-numComments=13
+numComments=14

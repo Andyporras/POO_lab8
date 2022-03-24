@@ -14,7 +14,7 @@ public class Ruta {
   private String dificultad;
 
   /**
-   * Contrustor de la clase Ruta.
+   * Constructor de la clase Ruta.
    * 
    * @param pNombre
    * @param pDistanciaEnKm

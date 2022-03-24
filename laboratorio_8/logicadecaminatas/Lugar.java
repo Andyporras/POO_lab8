@@ -4,6 +4,16 @@ package logicadecaminatas;
 //import logicadecaminatas.Ruta;
 import java.util.ArrayList;
 
+/**
+ * Clase Lugar, la cual permite ingresar las características de un lugar a visitar por
+ * los senderistas, esta clase está relacionada estructuralmente con las clases: Ruta y
+ * Dirreción.
+ * Posee los atributos: contadorLugares, idLugar, nombre, costoDeIngreso, tipoLugar,
+ * accesibilidad, parqueo, camping, contacto, telefono, indicaciones, ArrayList<Direccion> 
+ * y ArrayList<Ruta>.
+ * 
+ * @author
+ */
 public class Lugar {
   private static int contadorLugares;
   private int idLugar;
@@ -18,7 +28,20 @@ public class Lugar {
   private String indicaciones;
   private ArrayList<Direccion> direcciones;
   private ArrayList<Ruta> rutas;
-
+  
+  /**
+   * Constructor de la clase Lugar
+   * 
+   * @param pNombre
+   * @param pCostoDeIngreso
+   * @param pTipoLugar
+   * @param pAccesibilidad
+   * @param pParqueo
+   * @param pCamping
+   * @param pContacto
+   * @param pTelefono
+   * @param pIndicaciones
+   */
   public Lugar(String pNombre, double pCostoDeIngreso, String pTipoLugar,
       boolean pAccesibilidad, boolean pParqueo, boolean pCamping, String pContacto,
       String pTelefono, String pIndicaciones) {
@@ -33,7 +56,11 @@ public class Lugar {
     telefono = pTelefono;
     indicaciones = pIndicaciones;
   }
-
+  //método agregado.
+  public ArrayList getRutas(){
+    return rutas;
+  }
+  
   public double calcularDistaciaTotalEnRutas() {
     // ArrayList<Ruta> lista = new ArrayList<Ruta>();
     double total = 0;
@@ -70,7 +97,7 @@ public class Lugar {
   }
 
   /**
-   * retorna el nombre
+   * Retorna el nombre.
    * 
    * @return un String con el nombre
    */
@@ -79,18 +106,27 @@ public class Lugar {
   }
 
   /**
-   * modifica el nombre de la ruta.
+   *Modifica el nombre de la ruta.
    * 
-   * @param pNombre
+   * @param pNombre.
    */
   public void setNombre(String pNombre) {
     nombre = pNombre;
   }
-
+  
+  /**
+   * Retorna el costo del ingreso al lugar.
+   * 
+   * @return un double indicando el costo de ingreso.
+   */
   public double getCostoDeIngreso() {
     return costoDeIngreso;
   }
-
+  /** 
+   * Retorna el tipo de lugar.
+   * 
+   * @return un String con el tipo de lugar.
+   */
   public String getTipoLugar() {
     return tipoLugar;
   }

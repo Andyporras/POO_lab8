@@ -1,9 +1,12 @@
 #BlueJ class context
 comment0.target=Ruta
+comment0.text=\r\n\ Clase\ Ruta\ que\ representa\ una\ ruta\ de\ un\ lugar\ a\ otro.\r\n\ con\ sus\ atributos\ nombre,\ distancia,\ dificultad\ y\ una\ lista\ de\ lugares.\r\n\ \r\n\ @author\ Andy\ Porras\r\n
 comment1.params=pNombre\ pDistanciaEnKm\ pDificultad
 comment1.target=Ruta(java.lang.String,\ double,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ de\ la\ clase\ Ruta.\r\n\ \r\n\ @param\ pNombre\r\n\ @param\ pDistanciaEnKm\r\n\ @param\ pDificultad\r\n
 comment2.params=
 comment2.target=java.lang.String\ toString()
+comment2.text=\r\n\ Metodo\ que\ retorna\ el\ los\ datos\ de\ la\ class\ Ruta.\r\n\ \r\n\ @return\ un\ String\ de\ los\ atributos\ de\ la\ clase\ Ruta.\r\n\ @param\ parametro\r\n
 comment3.params=
 comment3.target=int\ getIdRuta()
 comment4.params=

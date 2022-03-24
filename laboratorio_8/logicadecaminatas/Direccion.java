@@ -1,22 +1,28 @@
 package logicadecaminatas;
 
+/**
+ * Clase Direccion permite definir las indicaciones para llegar a un lugar.
+ * Posee los atributos: provincia, canton distrito y senas (señas).
+ * 
+ * @author
+ */
 public class Direccion{
   private String provincia;
   private String canton;
-  private String districto;
+  private String distrito;
   private String senas;
   
-  public Direccion(String  pProvincia,String pCanton, String pDistricto, String pSenas){
+  public Direccion(String  pProvincia,String pCanton, String pDistrito, String pSenas){
     provincia = pProvincia;
     canton = pCanton;
-    districto = pDistricto;
+    distrito = pDistrito;
     senas = pSenas;
   }
   public String toString(){
     String msg;
     msg=("Provincia: "+getProvincia()+"\n");
     msg+=("Cánto: "+getCanton()+"\n");
-    msg+=("Districto: "+getDistricto()+"\n");
+    msg+=("Districto: "+getDistrito()+"\n");
     msg+=("Señas: "+getSenas()+"\n");
     return msg;
   }
@@ -26,8 +32,8 @@ public class Direccion{
   public String getCanton(){
     return canton;
   }
-  public String getDistricto(){
-    return districto;
+  public String getDistrito(){
+    return distrito;
   }
   public String getSenas(){
     return senas;

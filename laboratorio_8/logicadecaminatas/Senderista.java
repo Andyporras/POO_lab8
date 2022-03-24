@@ -5,6 +5,14 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
+/**
+ * Clase Senderista, la cual permite asignar a los participantes de las caminatas.
+ * Está relacinada de manera estructural con la clase Caminata.
+ * Posee los atributos: nombre, apellido, fechaNacimiento, peso, altura, numeroTelefono y
+ * correoElectronico.
+ * 
+ * @author
+ */
 public class Senderista {
   private String nombre;
   private String apellido;
@@ -86,5 +94,28 @@ public class Senderista {
     msg += ("Correo Eletronico: " + getCorreoElectronico() + "\n");
     return msg;
   }
-
+  
+  public boolean equals(Object pO) {
+      if (this == pO) {
+          return true;
+      }
+      if (pO == null) {
+          return false;
+      }
+      if (getClass() != pO.getClass()) {
+          return false;
+      }
+      
+      Senderista senderista = (Senderista) pO;
+      
+      boolean equalsNombre = (nombre == senderista.getNombre());
+      boolean equalsApellido = (apellido.equals(senderista.getApellido()));
+      boolean equalsFechanacimiento = (fechaNacimiento.equals(senderista.getFechaNacimiento()));
+      boolean equalsNumeroTelefono = (numeroTelefono.equals(senderista.getNumeroTelefono()));
+      boolean equalsCorreoElectronico = (correoElectronico.equals(senderista.getCorreoElectronico()));
+      boolean resultado = equalsNombre && equalsApellido && equalsFechanacimiento;
+      resultado = resultado && equalsNumeroTelefono && equalsCorreoElectronico;
+      
+      return resultado;
+  }
 }

@@ -5,6 +5,14 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.InputStreamReader;
 
+/**
+ * Clase AplCaminata, la cual permite mostrar los distintos menús en consola
+ * que permiten ejecutar las funcionalidades de la clase AppCaminatas.
+ * Esta clase contiene los atributos estáticos: nombres, apellido, fecha, peso,
+ * altura, telefono, correo.
+ * 
+ * @author
+ */
 public class AplCaminata {
   static String[] nombres;
   static String[] apellido;
@@ -36,7 +44,7 @@ public class AplCaminata {
     } while (noSalir);
   }
 
-  static void mostrarMenu() {
+  public static void mostrarMenu() {
     out.println("1. Senderismo");
     out.println("2. Lugares");
     out.println("3. Caminatas");
@@ -208,7 +216,7 @@ public class AplCaminata {
         String telefono = in.readLine();
         out.println("Ingrese el correo electronico");
         String correo = in.readLine();
-        C1.registraSenderista(nombre, apellido, fecha, peso, altura, telefono, correo);
+        C1.registrarSenderista(nombre, apellido, fecha, peso, altura, telefono, correo);
         break;
       case 2:
         out.println("Ingrese el nombre del senderista a consultar");
