@@ -20,14 +20,12 @@ public class AppCaminatas {
   private ArrayList<Senderista> senderistas;
   private ArrayList<Lugar> lugares;
   private ArrayList<Caminata> caminatas;
-  private ArrayList<Ruta> rutas;//
   // metodo constructor
 
   public AppCaminatas() {
     senderistas = new ArrayList<Senderista>();
     lugares = new ArrayList<Lugar>();
     caminatas = new ArrayList<Caminata>();
-    rutas = new ArrayList<Ruta>();//
   }
 
   private void agregarSenderista(Senderista pSenderista) {
@@ -89,8 +87,11 @@ public class AppCaminatas {
 
   public void consultarLugaresPorProvincia(String pProvincia) {
     for (Lugar lugar : lugares) {
-      if (lugar.getDireccion().getProvincia().equals(pProvincia)) {
-        System.out.println(lugar.toString());
+      if (lugar.getDireccion() != null) {
+        if (lugar.getDireccion().getProvincia().equals(pProvincia)) {
+          System.out.println(lugar.toString());
+        }
+
       }
     }
   }
@@ -106,7 +107,9 @@ public class AppCaminatas {
   public void consultarRutasDeUnLugar(int pIdLugar) {
     for (Lugar lugar : lugares) {
       if (lugar.getIdLugar() == pIdLugar) {
-        System.out.println(rutas.toString());
+        for (Ruta ruta : lugar.getRutas()) {
+          System.out.println(ruta.toString());
+        }
       }
     }
   }
@@ -123,14 +126,21 @@ public class AppCaminatas {
     System.out.println("La distancia total de las rutas es: " + distanciaTotal);
   }
 
-  public void registrarCaminata(int pIdLugar, Date pFecha, Double pHoraInicio, Double pHoraFin, String pComentario) {
+  public void registrarCaminata(int pIdLugar, String pFecha, String pHoraInicio, String pHoraFin, String pComentario) {
     if (lugares.size() == 0) {
       System.out.println("No hay lugar donde realizar la caminata");
     } else {
       for (Lugar lugar : lugares) {
         if (lugar.getIdLugar() == pIdLugar) {
-          Caminata nuevo = new Caminata(lugar, pFecha, pHoraInicio, pHoraFin, pComentario);
-          caminatas.add(nuevo);
+          SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy");
+          Date fecha;
+          try {
+            fecha = dateFormat.parse(pFecha);
+            Caminata nuevo = new Caminata(lugar, fecha, pHoraInicio, pHoraFin, pComentario);
+            caminatas.add(nuevo);
+          } catch (ParseException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
@@ -173,12 +183,8 @@ public class AppCaminatas {
 
   public void consultarCaminatasConDuracionMayorAXMinutos(int pDuracion) {
     for (Caminata caminata : caminatas) {
-      try {
-        if (caminata.calcularDuracionTotalMinutos() >= pDuracion) {
-          System.out.println(caminata.toString());
-        }
-      } catch (InterruptedException e) {
-        e.printStackTrace();
+      if (caminata.calcularDuracion() >= pDuracion) {
+        System.out.println(caminata.toString());
       }
     }
   }
@@ -203,6 +209,38 @@ public class AppCaminatas {
       if (senderista.getIdSenderista() == pIdSenderista) {
         senderista.asignarRuta(pIdRuta);
       }
+    }
+  }
+
+  public void getIdLugares() {
+    for (Lugar lugar : lugares) {
+      System.out.println("Lugar " + lugar.getNombre() + " id : " + lugar.getIdLugar());
+    }
+  }
+
+  public void getIdSenderistas() {
+    for (Senderista senderista : senderistas) {
+      System.out.println("id del senderista " + senderista.getNombre() + " : " + senderista.getIdSenderista());
+    }
+  }
+
+  public void getIdCaminata() {
+    for (Caminata caminata : caminatas) {
+      System.out.println("id de la caminata: " + caminata.getId());
+    }
+  }
+
+  public void getNombreLugares() {
+    int i = 0;
+    for (Lugar lugar : lugares) {
+      System.out.println("Nombre del Lugar " + i + ": " + lugar.getNombre());
+      i++;
+    }
+  }
+
+  public void getApellidoSenderista() {
+    for (Senderista senderista : senderistas) {
+      System.out.println("Apellido del senderista " + senderista.getNombre() + " : " + senderista.getApellido());
     }
   }
 

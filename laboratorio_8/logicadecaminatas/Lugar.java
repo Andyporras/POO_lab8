@@ -28,7 +28,7 @@ public class Lugar {
   private String contacto;
   private String telefono;
   private String indicaciones;
-  private Direccion direccion;
+  private Direccion direccion = null;
   private ArrayList<Ruta> rutas;
 
   /**
@@ -47,6 +47,7 @@ public class Lugar {
   public Lugar(String pNombre, double pCostoDeIngreso, String pTipoLugar,
       boolean pAccesibilidad, boolean pParqueo, boolean pCamping, String pContacto,
       String pTelefono, String pIndicaciones) {
+    rutas = new ArrayList<Ruta>();
     contadorLugares++;
     idLugar = contadorLugares;
     nombre = pNombre;
@@ -180,9 +181,21 @@ public class Lugar {
     } else {
       msg += ("Tipo de lugar Montaña\n");
     }
-    msg += ("Acesibilida: " + getAcesibilidad() + "\n");
-    msg += ("Parqueo: " + getParqueo() + "\n");
-    msg += ("Camping: " + getCamping() + "\n");
+    if (getAcesibilidad()) {
+      msg += ("Acesibilida: si \n");
+    } else {
+      msg += ("Acesibilida: no \n");
+    }
+    if (getParqueo()) {
+      msg += ("Parqueo: si \n");
+    } else {
+      msg += ("Parqueo: no \n");
+    }
+    if (getCamping()) {
+      msg += ("Camping: si \n");
+    } else {
+      msg += ("Camping: no \n");
+    }
     msg += ("Telefono del lugar: " + getTelefono() + "\n");
     msg += ("Indicaciones: " + getIndicaciones() + "\n");
     return msg;

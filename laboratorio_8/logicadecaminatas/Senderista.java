@@ -31,6 +31,8 @@ public class Senderista {
 
   public Senderista(String pNombre, String pApellido, String pFechaNacimiento,
       double pPeso, double pAltura, String pNumeroTelefono, String pCorreoElectronico) {
+    caminatas = new ArrayList<Caminata>();
+    rutas = new ArrayList<Ruta>();
     nombre = pNombre;
     apellido = pApellido;
     fechaNacimiento = StringToDate(pFechaNacimiento);
@@ -54,10 +56,10 @@ public class Senderista {
   }
 
   public int calcularEdad() {
-    int result = 0;
-    int fecha = getFechaNacimiento().getYear();
-    result = 2021 - fecha;
-    return result;
+    int edad = 0;
+    Date fechaActual = new Date();
+    edad = (int) ((fechaActual.getYear() - fechaNacimiento.getYear()));
+    return edad;
   }
 
   public void asignarCaminata(Caminata pCaminata) {

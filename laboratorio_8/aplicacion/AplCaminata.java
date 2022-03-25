@@ -111,6 +111,7 @@ public class AplCaminata {
         String nombre;
         String contacto;
         String indicaciones;
+        C1.getIdLugares();
         out.println("Ingrese el nombre del lugar");
         nombre = in.readLine();
         out.println("Ingrese el costo de ingreso al lugar");
@@ -148,6 +149,7 @@ public class AplCaminata {
         C1.registrarLugar(nombre, costo, tipo, accesible1, parqueo1, camping1, contacto, telefono, indicaciones1);
         break;
       case 2:
+        C1.getNombreLugares();
         out.println("Ingrese el nombre del lugar que le desea registrar una ruta:");
         String nombre1 = in.readLine();
         out.println("Nombre de la ruta: ");
@@ -161,7 +163,8 @@ public class AplCaminata {
       case 3:
         String nombreLugar, provincia;
         String canton, districto, senas;
-        out.println("Ingrese el nombre del lugar: ");
+        C1.getIdLugares();
+        out.println("Ingrese el id del lugar: ");
         nombreLugar = in.readLine();
         out.println("Ingrese la provincia: ");
         provincia = in.readLine();
@@ -182,6 +185,18 @@ public class AplCaminata {
         out.println("Ingrese el tipo Playa(p) Montaña(m)");
         tipo = in.readLine();
         C1.consultarLugaresPorTipoLugar(tipo);
+        break;
+      case 6:
+        C1.getIdLugares();
+        out.println("Ingrese el id del lugar: ");
+        int idLugar = Integer.parseInt(in.readLine());
+        C1.consultarRutasDeUnLugar(idLugar);
+        break;
+      case 7:
+        C1.getIdLugares();
+        out.println("Ingrese el id del lugar: ");
+        int idLugar1 = Integer.parseInt(in.readLine());
+        C1.consultarDistanciaTotalEnRutasDeUnLugar(idLugar1);
         break;
       case 8:
         noSalir = false;
@@ -240,6 +255,7 @@ public class AplCaminata {
         C1.consultarRutasRealizadas(idSenderista);
         break;
       case 5:
+        C1.getIdSenderistas();
         out.println("Ingrese el id del senderista a registrar una ruta");
         int idSenderista2 = Integer.parseInt(in.readLine());
         out.println("Ingrese el id de la ruta. ");
@@ -270,21 +286,25 @@ public class AplCaminata {
     boolean noSalir = true;
     switch (pOpcion) {
       case 1:
-        out.println("Ingrese el id del lugar de la caminata. ");
-        int idLugar = Integer.parseInt(in.readLine());
-        out.println("Ingrese la fecha de la caminata.\n con el formato dd-MM-yyyy.");
-        String fecha = in.readLine();
-        out.println("Ingrese la hora de inicio de la caminata. ");
-        Double horaInicio = Double.parseDouble(in.readLine());
-        out.println("Ingrese la hora de finalizacion de la caminata. ");
-        Double horaFin = Double.parseDouble(in.readLine());
-        out.println("Ingrese un comentario sobre la caminata. ");
-        String comentario = in.readLine();
-        SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
-        Date fechaC = (Date) mascara.parse(fecha);
-        C1.registrarCaminata(idLugar, fechaC, horaInicio, horaFin, comentario);
+        try {
+          C1.getIdLugares();
+          out.println("Ingrese el id del lugar de la caminata. ");
+          int idLugar = Integer.parseInt(in.readLine());
+          out.println("Ingrese la fecha de la caminata.\n con el formato dd-MM-yyyy.");
+          String fecha = in.readLine();
+          out.println("Ingrese la hora de inicio de la caminata.\n con el formato HH:mm");
+          String horaInicio = in.readLine();
+          out.println("Ingrese la hora de finalizacion de la caminata.\n con el formato HH:mm");
+          String horaFin = in.readLine();
+          out.println("Ingrese un comentario sobre la caminata. ");
+          String comentario = in.readLine();
+          C1.registrarCaminata(idLugar, fecha, horaInicio, horaFin, comentario);
+        } catch (Exception e) {
+          out.println("Error al registrar la caminata");
+        }
         break;
       case 2:
+        C1.getIdCaminata();
         out.println("Ingrese el id de la caminata. ");
         int idCaminata = Integer.parseInt(in.readLine());
         out.println("Ingrese el apellido del senderista. ");
@@ -294,20 +314,28 @@ public class AplCaminata {
       case 3:
         out.println("Ingrese la fecha a consultar de las caminatas. ");
         String fechaConsulta = in.readLine();
-        SimpleDateFormat mascara2 = new SimpleDateFormat("dd/MM/yy");
-        Date fechaC2 = (Date) mascara2.parse(fechaConsulta);
-        C1.consultarParticipantesEnCaminataConFecha(fechaC2);
+        try {
+          SimpleDateFormat mascara2 = new SimpleDateFormat("dd-MM-yyy");
+          Date fechaC2 = (Date) mascara2.parse(fechaConsulta);
+          C1.consultarParticipantesEnCaminataConFecha(fechaC2);
+        } catch (ParseException e) {
+          out.println("Error en la fecha ingresada");
+        }
         break;
       case 4:
-        out.println("Ingrese una fecha del rango a consultar. ");
-        String fechaInicio = in.readLine();
-        SimpleDateFormat mascara3 = new SimpleDateFormat("dd/MM/yy");
-        Date fechaC3 = (Date) mascara3.parse(fechaInicio);
-        out.println("Ingrese la otra fecha del rango a consultar. ");
-        String fechaFin = in.readLine();
-        SimpleDateFormat mascara4 = new SimpleDateFormat("dd/MM/yy");
-        Date fechaC4 = (Date) mascara4.parse(fechaFin);
-        C1.consultarCaminatasEnRangoFechas(fechaC3, fechaC4);
+        try {
+          out.println("Ingrese una fecha del rango a consultar. ");
+          String fechaInicio = in.readLine();
+          SimpleDateFormat mascara3 = new SimpleDateFormat("dd-MM-yyy");
+          Date fechaC3 = (Date) mascara3.parse(fechaInicio);
+          out.println("Ingrese la otra fecha del rango a consultar. ");
+          String fechaFin = in.readLine();
+          SimpleDateFormat mascara4 = new SimpleDateFormat("dd-MM-yyy");
+          Date fechaC4 = (Date) mascara4.parse(fechaFin);
+          C1.consultarCaminatasEnRangoFechas(fechaC3, fechaC4);
+        } catch (ParseException e) {
+          out.println("Error en la fecha ingresada");
+        }
         break;
       case 5:
         out.println("Ingrese la duracion minima que debe tener la caminata a consultar. ");

@@ -1,38 +1,55 @@
 package logicadecaminatas;
 
 import java.util.*;
+import java.sql.Time;
 import java.text.*;
 
 public class Caminata {
   private static int contadorCaminatas = 0;
   private int idCaminata;
   private Date fecha;
-  private double horaInicio;
-  private double horaFinalizacion;
+  private Time horaInicio;
+  private Time horaFinalizacion;
   private String comentario = null;
   private ArrayList<Senderista> senderistas;
   private Lugar lugar;
 
-  public Caminata(Lugar pLugar, Date pFecha, Double pHoraInicio, Double pHoraFinalizacion, String pComentario) {
+  public Caminata(Lugar pLugar, Date pFecha, String pHoraInicio, String pHoraFinalizacion, String pComentario) {
+    senderistas = new ArrayList<Senderista>();
     setFecha();
     lugar = pLugar;
-    horaInicio = System.currentTimeMillis();
+    setHoraInicio(pHoraInicio);
+    setHoraFinalizacion(pHoraFinalizacion);
     contadorCaminatas++;
     idCaminata = contadorCaminatas;
+  }
+
+  private void setHoraFinalizacion(String pHoraFinalizacion) {
+    DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+    try {
+      horaFinalizacion = new Time(dateFormat.parse(pHoraFinalizacion).getTime());
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void setHoraInicio(String pHoraInicio) {
+    DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+    try {
+      horaInicio = new Time(dateFormat.parse(pHoraInicio).getTime());
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
   }
 
   public int getIdCaminata() {
     return idCaminata;
   }
 
-  public int calcularDuracionTotalMinutos() throws InterruptedException {
-    long horaInicio = System.currentTimeMillis();
-    Thread.sleep(2000);
-    long horaFinalizacion = System.currentTimeMillis();
-    int tiempo = (int) ((horaFinalizacion - horaInicio) / 1000);
-    return tiempo;
-    // System.out.println(tiempo + " minutos");
-
+  public int calcularDuracion() {
+    int duracion = 0;
+    duracion = (int) (horaFinalizacion.getTime() - horaInicio.getTime());
+    return duracion;
   }
 
   public int getId() {
