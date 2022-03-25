@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
  * Esta clase contiene los atributos estáticos: nombres, apellido, fecha, peso,
  * altura, telefono, correo.
  * 
- * @author
+ * @author Andy Porras Romero, Angelica Díaz Barrios
  */
 public class AplCaminata {
   static String[] nombres;
@@ -314,13 +314,7 @@ public class AplCaminata {
       case 3:
         out.println("Ingrese la fecha a consultar de las caminatas. ");
         String fechaConsulta = in.readLine();
-        try {
-          SimpleDateFormat mascara2 = new SimpleDateFormat("dd-MM-yyy");
-          Date fechaC2 = (Date) mascara2.parse(fechaConsulta);
-          C1.consultarParticipantesEnCaminataConFecha(fechaC2);
-        } catch (ParseException e) {
-          out.println("Error en la fecha ingresada");
-        }
+        C1.consultarParticipantesEnCaminataConFecha(fechaConsulta);
         break;
       case 4:
         try {

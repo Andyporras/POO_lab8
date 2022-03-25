@@ -160,7 +160,7 @@ public class AppCaminatas {
 
   }
 
-  public void consultarParticipantesEnCaminataConFecha(Date pFecha) {
+  public void consultarParticipantesEnCaminataConFecha(String pFecha) {
     SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
     for (Caminata caminata : caminatas) {
       if (caminata.getFecha().equals(mascara.format(pFecha))) {

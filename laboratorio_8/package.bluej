@@ -1,7 +1,7 @@
 #BlueJ package file
 editor.fx.0.height=870
 editor.fx.0.width=780
-editor.fx.0.x=761
+editor.fx.0.x=760
 editor.fx.0.y=0
 objectbench.height=89
 objectbench.width=777
@@ -29,9 +29,9 @@ target1.type=PackageTarget
 target1.width=120
 target1.x=80
 target1.y=10
-target2.height=82
+target2.height=80
 target2.name=logicadecaminatas
 target2.type=PackageTarget
 target2.width=140
-target2.x=210
-target2.y=10
+target2.x=250
+target2.y=240

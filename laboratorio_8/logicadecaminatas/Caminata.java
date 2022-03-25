@@ -16,12 +16,13 @@ public class Caminata {
 
   public Caminata(Lugar pLugar, Date pFecha, String pHoraInicio, String pHoraFinalizacion, String pComentario) {
     senderistas = new ArrayList<Senderista>();
-    setFecha();
+    fecha = pFecha;
     lugar = pLugar;
     setHoraInicio(pHoraInicio);
     setHoraFinalizacion(pHoraFinalizacion);
     contadorCaminatas++;
     idCaminata = contadorCaminatas;
+    comentario = pComentario;
   }
 
   private void setHoraFinalizacion(String pHoraFinalizacion) {
@@ -48,7 +49,8 @@ public class Caminata {
 
   public int calcularDuracion() {
     int duracion = 0;
-    duracion = (int) (horaFinalizacion.getTime() - horaInicio.getTime());
+    duracion = (int) (horaFinalizacion.getMinutes() - horaInicio.getMinutes());
+    System.out.println(duracion + " minutos\n");
     return duracion;
   }
 
@@ -75,12 +77,6 @@ public class Caminata {
   public String getFecha() {
     SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
     return mascara.format(fecha);
-  }
-
-  public void setFecha() {
-    Calendar calendario;
-    calendario = Calendar.getInstance();
-    fecha = (Date) calendario.getTime();
   }
 
   public String toString() {
